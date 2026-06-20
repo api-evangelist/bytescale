@@ -1,0 +1,158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bytescale API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Upload",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a file with a single HTTP request (raw binary body).",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bytescale.com/v2/accounts/{accountId}/uploads/binary",
+            "body": {
+              "type": "binary",
+              "data": ""
+            }
+          },
+          "docs": "Upload a file with a single HTTP request (raw binary body)."
+        },
+        {
+          "info": {
+            "name": "Upload one or more files via multipart form data.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bytescale.com/v2/accounts/{accountId}/uploads/form_data",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Upload one or more files via multipart form data."
+        },
+        {
+          "info": {
+            "name": "Upload a file from a remote URL.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bytescale.com/v2/accounts/{accountId}/uploads/url",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"url\": \"https://example.com/image.jpg\"\n}"
+            }
+          },
+          "docs": "Upload a file from a remote URL."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the details and metadata of a stored file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bytescale.com/v2/accounts/{accountId}/files/details?filePath=/uploads/image.jpg"
+          },
+          "docs": "Get the details and metadata of a stored file."
+        },
+        {
+          "info": {
+            "name": "Delete a stored file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.bytescale.com/v2/accounts/{accountId}/files?filePath=/uploads/image.jpg"
+          },
+          "docs": "Delete a stored file."
+        },
+        {
+          "info": {
+            "name": "Copy a file from one path to another.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bytescale.com/v2/accounts/{accountId}/files/copy",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"source\": \"/uploads/image.jpg\",\n  \"destination\": \"/uploads/copy.jpg\"\n}"
+            }
+          },
+          "docs": "Copy a file from one path to another."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Folders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the files and folders within a folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bytescale.com/v2/accounts/{accountId}/folders/list?folderPath=/uploads"
+          },
+          "docs": "List the files and folders within a folder."
+        },
+        {
+          "info": {
+            "name": "Create or update a folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.bytescale.com/v2/accounts/{accountId}/folders",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"folderPath\": \"/uploads\"\n}"
+            }
+          },
+          "docs": "Create or update a folder."
+        },
+        {
+          "info": {
+            "name": "Delete a folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.bytescale.com/v2/accounts/{accountId}/folders?folderPath=/uploads"
+          },
+          "docs": "Delete a folder."
+        }
+      ]
+    }
+  ]
+}

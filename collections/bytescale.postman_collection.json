@@ -1,0 +1,422 @@
+{
+  "item": [
+    {
+      "id": "b423aaaf-ec69-4b52-94e5-041ed8f2463f",
+      "name": "Upload",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a4b521c-f04a-4985-a476-1a541c8830ac",
+          "name": "Upload a file with a single HTTP request (raw binary body).",
+          "request": {
+            "name": "Upload a file with a single HTTP request (raw binary body).",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                ":accountId",
+                "uploads",
+                "binary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": "{{accountId}}"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "file",
+              "file": {}
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a51f85c9-7da5-4967-82e2-6a0b4b2ed081",
+          "name": "Upload one or more files via multipart form data.",
+          "request": {
+            "name": "Upload one or more files via multipart form data.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                ":accountId",
+                "uploads",
+                "form_data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": "{{accountId}}"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "e201bd44-ae4c-4c52-9e25-951db9d209f6",
+          "name": "Upload a file from a remote URL.",
+          "request": {
+            "name": "Upload a file from a remote URL.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                ":accountId",
+                "uploads",
+                "url"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": "{{accountId}}"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"https://example.com/image.jpg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "d42cba66-d206-4b04-8524-3c74c04b12cf",
+      "name": "Files",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "48520ae6-bd0b-4fae-b388-622e639f6d97",
+          "name": "Get the details and metadata of a stored file.",
+          "request": {
+            "name": "Get the details and metadata of a stored file.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                ":accountId",
+                "files",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "filePath",
+                  "value": "/uploads/image.jpg"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": "{{accountId}}"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "06a3aa20-4e1a-4458-8b9f-b47d7bfb3994",
+          "name": "Delete a stored file.",
+          "request": {
+            "name": "Delete a stored file.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                ":accountId",
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "filePath",
+                  "value": "/uploads/image.jpg"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": "{{accountId}}"
+                }
+              ]
+            },
+            "header": [],
+            "method": "DELETE"
+          },
+          "response": []
+        },
+        {
+          "id": "9f483bc4-9505-4f68-b564-a96a9488229f",
+          "name": "Copy a file from one path to another.",
+          "request": {
+            "name": "Copy a file from one path to another.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                ":accountId",
+                "files",
+                "copy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": "{{accountId}}"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"/uploads/image.jpg\",\n  \"destination\": \"/uploads/copy.jpg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "47b7ffbb-03b5-40ca-884f-f4c37bab1451",
+      "name": "Folders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c70696fd-cb10-4249-8cf3-54d7cbbd9b3e",
+          "name": "List the files and folders within a folder.",
+          "request": {
+            "name": "List the files and folders within a folder.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                ":accountId",
+                "folders",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "folderPath",
+                  "value": "/uploads"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": "{{accountId}}"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "id": "c96f79fa-6c5a-4b7b-89c3-24906eee8c98",
+          "name": "Create or update a folder.",
+          "request": {
+            "name": "Create or update a folder.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                ":accountId",
+                "folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": "{{accountId}}"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"folderPath\": \"/uploads\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "3bff0a6b-439a-4df9-a7dc-b5fa517f9eda",
+          "name": "Delete a folder.",
+          "request": {
+            "name": "Delete a folder.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                ":accountId",
+                "folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "folderPath",
+                  "value": "/uploads"
+                }
+              ],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": "{{accountId}}"
+                }
+              ]
+            },
+            "header": [],
+            "method": "DELETE"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bytescale.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "A623uY2",
+      "key": "accountId"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "93c3162d-985c-49ae-8e9f-e6e16d8d966a",
+    "name": "Bytescale API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Bytescale (formerly Upload.io) file upload, storage, media processing, and CDN platform.\n\nContact Support:\n Name: Bytescale Support\n URL: https://www.bytescale.com/docs",
+      "type": "text/plain"
+    }
+  }
+}

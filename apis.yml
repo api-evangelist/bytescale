@@ -1,0 +1,114 @@
+aid: bytescale
+url: https://raw.githubusercontent.com/api-evangelist/bytescale/refs/heads/main/apis.yml
+name: Bytescale
+kind: company
+description: Bytescale (formerly Upload.io) is a file upload, storage, image / video /
+  audio processing, and CDN platform for developers. A simple REST API uploads files
+  (binary, multipart form data, or from a URL), manages files and folders, and serves
+  optimized media through real-time, URL-based transformations on a global CDN.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- File Upload
+- Storage
+- Image Processing
+- CDN
+- Media
+created: '2026-06-20'
+modified: '2026-06-20'
+specificationVersion: '0.19'
+apis:
+- aid: bytescale:bytescale-file-upload-api
+  name: Bytescale File Upload API
+  tags:
+  - File Upload
+  - Binary
+  - Form Data
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bytescale.com/docs/upload-api
+  baseURL: https://api.bytescale.com/v2/accounts/{accountId}
+  properties:
+  - url: https://www.bytescale.com/docs/upload-api
+    type: Documentation
+  - url: https://www.bytescale.com/docs/upload-api/BasicUpload
+    type: APIReference
+  - url: openapi/bytescale-openapi.yml
+    type: OpenAPI
+  - url: collections/bytescale.postman_collection.json
+    type: PostmanCollection
+  description: Upload files with a single HTTP request - raw binary, multipart form
+    data (multiple files), or from a remote URL - plus a multipart workflow for very
+    large files. Returns the stored file path and public CDN file URL.
+- aid: bytescale:bytescale-files-management-api
+  name: Bytescale Files Management API
+  tags:
+  - Files
+  - Folders
+  - Storage
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bytescale.com/docs/file-api
+  baseURL: https://api.bytescale.com/v2/accounts/{accountId}
+  properties:
+  - url: https://www.bytescale.com/docs/file-api
+    type: Documentation
+  - url: https://www.bytescale.com/docs/file-api/GetFileDetails
+    type: APIReference
+  - url: openapi/bytescale-openapi.yml
+    type: OpenAPI
+  - url: collections/bytescale.postman_collection.json
+    type: PostmanCollection
+  description: Inspect file details, download original files, delete files, copy files,
+    and list, create, or delete folders for managing stored assets.
+- aid: bytescale:bytescale-image-video-processing-api
+  name: Bytescale Image / Video Processing API
+  tags:
+  - Image Processing
+  - Video
+  - Transformations
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bytescale.com/docs/image-processing-api
+  baseURL: https://upcdn.io/{accountId}
+  properties:
+  - url: https://www.bytescale.com/docs/image-processing-api
+    type: Documentation
+  - url: https://www.bytescale.com/docs/image-processing-api
+    type: APIReference
+  - url: openapi/bytescale-openapi.yml
+    type: OpenAPI
+  description: Real-time, URL-based image, video, and audio processing - resize, crop,
+    convert format, compress, blur, rotate, watermark, add text, and extract video
+    thumbnails - applied via query-string parameters on GET requests and cached at
+    the edge.
+- aid: bytescale:bytescale-cdn-serving-api
+  name: Bytescale CDN / Serving API
+  tags:
+  - CDN
+  - Serving
+  - Delivery
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.bytescale.com/image-cdn
+  baseURL: https://upcdn.io/{accountId}
+  properties:
+  - url: https://www.bytescale.com/image-cdn
+    type: Documentation
+  - url: openapi/bytescale-openapi.yml
+    type: OpenAPI
+  description: Global CDN delivery of raw and transformed files via the upcdn.io edge
+    network, serving uploaded assets and their processed variants over HTTPS.
+common:
+- type: GitHubOrganization
+  url: https://github.com/bytescale
+- type: LinkedIn
+  url: https://www.linkedin.com/company/bytescale
+- type: Website
+  url: https://www.bytescale.com
+- type: Documentation
+  url: https://www.bytescale.com/docs
+- type: Plans
+  url: plans/bytescale-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/bytescale-rate-limits.yml
+- type: FinOps
+  url: finops/bytescale-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

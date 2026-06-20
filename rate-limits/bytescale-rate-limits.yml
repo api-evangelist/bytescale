@@ -1,0 +1,70 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Bytescale
+providerId: bytescale
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- File Upload
+- Storage
+- Image Processing
+- CDN
+- Media
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Bytescale governs usage primarily through monthly plan quotas - storage,
+  download bandwidth, upload requests, and processing (CPU hours) - rather than
+  fixed per-second request rates. There are no daily limits; restrictions are
+  monthly quotas only. Exceeding a quota results in overage billing (on
+  pay-as-you-go) or throttling/blocking depending on account configuration.
+  Per-second request throttles and max upload sizes apply per plan. Specific
+  per-endpoint request-rate values are not reconciled in this artifact.
+notes: >-
+  Verify quota-exceeded behavior and any per-request throttles in the Bytescale
+  pricing page and support docs on reconciliation; max upload size and bundled
+  quotas vary by plan (Basic / Plus / Advanced / Enterprise).
+sources:
+- https://www.bytescale.com/pricing
+- https://support.bytescale.com/article/10-what-happens-if-i-exceed-the-limits
+responseCodes:
+  throttled: 429
+limits:
+- name: Storage Quota
+  scope: account
+  metric: gigabytes
+  limit: per plan (Basic 10 GB / Plus 50 GB / Advanced 300 GB)
+  notes: Total storage used at any point in time; overage billed per GB.
+- name: Download Bandwidth Quota
+  scope: account
+  metric: gigabytes
+  limit: per plan (Basic 10 GB / Plus 50 GB / Advanced 300 GB)
+  notes: Monthly egress data transfer; overage billed per GB.
+- name: Upload Requests Quota
+  scope: account
+  metric: requests
+  limit: per plan (Basic 20,000 / Plus 100,000 / Advanced 500,000)
+  notes: Monthly count of files created or overwritten; overage billed per upload.
+- name: Processing Quota (CPU Hours)
+  scope: account
+  metric: cpu_hours
+  limit: per plan (Basic 1x / Plus 5x / Advanced 30x)
+  notes: Monthly transformation processing time; overage billed per CPU hour.
+- name: Max Upload Size
+  scope: request
+  metric: bytes
+  limit: per plan (Basic 500 MB / Plus 5 GB / Advanced 100 GB)
+  notes: Maximum size of a single uploaded file.
+policies:
+- name: Monthly Quotas Only
+  description: No daily limits apply; all restrictions are enforced as monthly quotas.
+- name: Overage Billing
+  description: On pay-as-you-go, usage beyond bundled quotas is billed per GB / per CPU hour / per upload rather than hard-blocked.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

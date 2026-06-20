@@ -1,0 +1,74 @@
+aid: bytescale
+name: Bytescale
+review:
+  question: Does Bytescale expose a documented public WebSocket or streaming API?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. Bytescale's documented surface is
+    entirely HTTP request/response: a REST API for uploads and file/folder
+    management under https://api.bytescale.com/v2/accounts/{accountId}, and a
+    URL-based (GET) CDN media-processing surface under upcdn.io. No WebSocket,
+    Server-Sent Events, webhook, or other event-driven streaming transport is
+    documented, so there is no in-scope asynchronous surface to model.
+findings:
+  summary: |
+    Bytescale (formerly Upload.io) does not publish a documented public
+    WebSocket or SSE streaming API. Uploads are performed with synchronous
+    HTTPS requests (raw binary, multipart form data, or upload-from-URL),
+    including an optional multipart workflow for very large files that is
+    still ordinary request/response. File and folder management are REST
+    endpoints. Media processing is delivered as real-time, URL-based
+    transformations applied via query-string parameters on GET requests to
+    the upcdn.io CDN and cached at the edge. No bidirectional, realtime, or
+    event-streaming transport (ws:// or wss://) is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.bytescale.com/v2/accounts/{accountId}
+      documented: true
+    - protocol: CDN (URL-based processing)
+      scheme: https
+      baseURL: https://upcdn.io/{accountId}
+      note: GET requests with transformation query parameters; cached at the edge. Not a streaming protocol.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in the Upload, File, Folder, or processing docs as of the review date.
+  endpointsConfirmedRest:
+    - POST   https://api.bytescale.com/v2/accounts/{accountId}/uploads/binary
+    - POST   https://api.bytescale.com/v2/accounts/{accountId}/uploads/form_data
+    - POST   https://api.bytescale.com/v2/accounts/{accountId}/uploads/url
+    - GET    https://api.bytescale.com/v2/accounts/{accountId}/files/details
+    - DELETE https://api.bytescale.com/v2/accounts/{accountId}/files
+    - POST   https://api.bytescale.com/v2/accounts/{accountId}/files/copy
+    - GET    https://api.bytescale.com/v2/accounts/{accountId}/folders/list
+    - PUT    https://api.bytescale.com/v2/accounts/{accountId}/folders
+    - DELETE https://api.bytescale.com/v2/accounts/{accountId}/folders
+  endpointsConfirmedCdn:
+    - GET https://upcdn.io/{accountId}/image/{filePath}?{transformations}
+    - GET https://upcdn.io/{accountId}/raw/{filePath}
+sources:
+  - url: https://www.bytescale.com/docs
+    type: Documentation
+    note: Lists the REST Upload, File, and Folder APIs; no WebSocket or SSE mentioned.
+  - url: https://www.bytescale.com/docs/upload-api
+    type: APIReference
+    note: All upload endpoints are synchronous HTTPS POST under /v2/accounts/{accountId}/uploads/*.
+  - url: https://www.bytescale.com/docs/file-api
+    type: APIReference
+    note: File and folder management are REST endpoints; operations are synchronous.
+  - url: https://www.bytescale.com/docs/image-processing-api
+    type: Documentation
+    note: Media processing is URL-based via GET query parameters to upcdn.io; not WebSocket.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists in Bytescale's documented API.
+    The catalog models the REST Upload and File/Folder APIs plus the URL-based
+    CDN processing surface; no AsyncAPI artifact was authored because there is
+    no documented event-driven or streaming transport.

@@ -1,0 +1,313 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Bytescale
+providerId: bytescale
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: true
+tags:
+- File Upload
+- Storage
+- Image Processing
+- CDN
+- Media
+- Plans
+description: >-
+  Bytescale uses tiered monthly subscription plans (Basic, Plus, Advanced) that
+  each bundle a quota of storage, download bandwidth, upload requests, and
+  processing capacity (expressed as a CPU-hour multiplier), plus a free trial.
+  Usage beyond the bundled quota is billed pay-as-you-go: storage and bandwidth
+  per GB, processing per CPU hour, and uploads per request. Ingress (uploads) is
+  free except for optional accelerated uploads. Enterprise pricing is available
+  on request.
+notes: >-
+  Plan quotas and rates as published on the Bytescale pricing page; verify the
+  page for the current free trial terms, exact tier quotas, and overage rates.
+sources:
+- https://www.bytescale.com/pricing
+- https://support.bytescale.com/article/10-what-happens-if-i-exceed-the-limits
+plans:
+- id: bytescale-free
+  name: Free Trial
+  type: free
+  description: >-
+    Free trial access to evaluate the upload, storage, processing, and CDN
+    features before subscribing to a paid plan.
+  entries:
+  - label: Trial Access
+    name: trial
+    type: free
+    metric: account
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: false
+  elements:
+  - name: File Upload
+  - name: Files Management
+  - name: Image / Video Processing
+  - name: CDN Serving
+- id: bytescale-basic
+  name: Basic
+  type: subscription
+  description: >-
+    Entry paid tier with 10 GB storage, 10 GB download bandwidth, 20,000
+    upload requests, 1x CPU-hour processing, and 500 MB max upload size.
+  entries:
+  - label: Monthly Subscription
+    name: subscription
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $7 per month
+    userMultiplied: false
+  - label: Storage Included
+    name: storage
+    type: included
+    metric: gigabytes
+    limit: 10
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Download Bandwidth Included
+    name: bandwidth
+    type: included
+    metric: gigabytes
+    limit: 10
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Upload Requests Included
+    name: uploads
+    type: included
+    metric: requests
+    limit: 20000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Processing Included
+    name: processing
+    type: included
+    metric: cpu_hours
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 1x CPU hours included
+    userMultiplied: false
+  elements:
+  - name: File Upload
+  - name: Files Management
+  - name: Image / Video Processing
+  - name: CDN Serving
+- id: bytescale-plus
+  name: Plus
+  type: subscription
+  description: >-
+    Mid tier with 50 GB storage, 50 GB download bandwidth, 100,000 upload
+    requests, 5x CPU-hour processing, and 5 GB max upload size.
+  entries:
+  - label: Monthly Subscription
+    name: subscription
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $35 per month
+    userMultiplied: false
+  - label: Storage Included
+    name: storage
+    type: included
+    metric: gigabytes
+    limit: 50
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Download Bandwidth Included
+    name: bandwidth
+    type: included
+    metric: gigabytes
+    limit: 50
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Upload Requests Included
+    name: uploads
+    type: included
+    metric: requests
+    limit: 100000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Processing Included
+    name: processing
+    type: included
+    metric: cpu_hours
+    limit: 5
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 5x CPU hours included
+    userMultiplied: false
+  elements:
+  - name: File Upload
+  - name: Files Management
+  - name: Image / Video Processing
+  - name: CDN Serving
+- id: bytescale-advanced
+  name: Advanced
+  type: subscription
+  description: >-
+    High-volume tier with 300 GB storage, 300 GB download bandwidth, 500,000
+    upload requests, 30x CPU-hour processing, and 100 GB max upload size.
+  entries:
+  - label: Monthly Subscription
+    name: subscription
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $195 per month
+    userMultiplied: false
+  - label: Storage Included
+    name: storage
+    type: included
+    metric: gigabytes
+    limit: 300
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Download Bandwidth Included
+    name: bandwidth
+    type: included
+    metric: gigabytes
+    limit: 300
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Upload Requests Included
+    name: uploads
+    type: included
+    metric: requests
+    limit: 500000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included
+    userMultiplied: false
+  - label: Processing Included
+    name: processing
+    type: included
+    metric: cpu_hours
+    limit: 30
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 30x CPU hours included
+    userMultiplied: false
+  elements:
+  - name: File Upload
+  - name: Files Management
+  - name: Image / Video Processing
+  - name: CDN Serving
+- id: bytescale-payg
+  name: Pay-As-You-Go Overages
+  type: usage
+  description: >-
+    Metered overage rates applied beyond the bundled plan quotas. Ingress
+    (uploads to Bytescale) is free; accelerated uploads are a separate
+    opt-in charge disabled by default.
+  entries:
+  - label: Storage Overage
+    name: storage_overage
+    type: usage
+    metric: gigabytes
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from $0.05 per GB
+    userMultiplied: false
+  - label: Bandwidth Overage
+    name: bandwidth_overage
+    type: usage
+    metric: gigabytes
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from $0.05 per GB
+    userMultiplied: false
+  - label: Processing Overage
+    name: processing_overage
+    type: usage
+    metric: cpu_hours
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $1.875 per CPU hour
+    userMultiplied: false
+  - label: Upload Requests Overage
+    name: uploads_overage
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.0005 per upload
+    userMultiplied: false
+  elements:
+  - name: Storage
+  - name: Bandwidth
+  - name: Processing
+  - name: Uploads
+- id: bytescale-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom volume commitments, higher quotas, and negotiated terms. Contact
+    Bytescale sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
