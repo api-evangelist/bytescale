@@ -95,6 +95,10 @@ apis:
   description: Global CDN delivery of raw and transformed files via the upcdn.io edge
     network, serving uploaded assets and their processed variants over HTTPS.
 common:
+- type: DomainSecurity
+  url: security/bytescale-domain-security.yml
+- type: Authentication
+  url: authentication/bytescale-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/bytescale
 - type: LinkedIn
@@ -109,6 +113,8 @@ common:
   url: rate-limits/bytescale-rate-limits.yml
 - type: FinOps
   url: finops/bytescale-finops.yml
+- type: Blog
+  url: https://blog.bytescale.com/rss/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

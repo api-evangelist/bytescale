@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/bytescale-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Bytescale API key passed as a Bearer token. Secret keys (secret_*) are required
+    for write and management operations; public keys (public_*) may be used with JWT-based auth.
+  sources:
+  - openapi/bytescale-openapi.yml
