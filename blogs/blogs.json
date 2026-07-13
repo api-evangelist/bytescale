@@ -1,0 +1,13 @@
+{
+  "repo": "bytescale",
+  "feeds": [
+    {
+      "source": "https://blog.bytescale.com/rss/",
+      "feed_url": "https://blog.bytescale.com/rss/",
+      "title": "Bytescale Blog | Image, Video & Audio Processing",
+      "saved": 0
+    }
+  ],
+  "fetched": "2026-07-11T11:43:46Z",
+  "post_count": 15
+}
