@@ -95,6 +95,8 @@ apis:
   description: Global CDN delivery of raw and transformed files via the upcdn.io edge
     network, serving uploaded assets and their processed variants over HTTPS.
 common:
+- type: AgenticAccess
+  url: agentic-access/bytescale-agentic-access.yml
 - type: DomainSecurity
   url: security/bytescale-domain-security.yml
 - type: Authentication
