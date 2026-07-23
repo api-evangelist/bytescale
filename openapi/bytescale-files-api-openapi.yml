@@ -1,0 +1,169 @@
+openapi: 3.0.1
+info:
+  title: Bytescale Files API
+  description: REST API for the Bytescale (formerly Upload.io) file upload, storage, media processing, and CDN platform. Upload files via raw binary, multipart form data, or from a URL; manage files and folders; and serve optimized media through the upcdn.io edge network. All Upload and File API endpoints are rooted at https://api.bytescale.com/v2/accounts/{accountId} and authenticate with a Bearer API key.
+  termsOfService: https://www.bytescale.com/legal/terms
+  contact:
+    name: Bytescale Support
+    url: https://www.bytescale.com/docs
+  version: '2.0'
+servers:
+- url: https://api.bytescale.com
+  description: Bytescale REST API (Upload and File APIs)
+security:
+- bearerAuth: []
+tags:
+- name: Files
+paths:
+  /v2/accounts/{accountId}/files/details:
+    get:
+      operationId: getFileDetails
+      tags:
+      - Files
+      summary: Get the details and metadata of a stored file.
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - name: filePath
+        in: query
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 512
+        description: Absolute file path beginning with "/".
+      responses:
+        '200':
+          description: File details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileDetails'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: File not found.
+  /v2/accounts/{accountId}/files:
+    delete:
+      operationId: deleteFile
+      tags:
+      - Files
+      summary: Delete a stored file.
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      - name: filePath
+        in: query
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 512
+        description: Absolute file path beginning with "/".
+      responses:
+        '200':
+          description: File deleted (empty body).
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/accounts/{accountId}/files/copy:
+    post:
+      operationId: copyFile
+      tags:
+      - Files
+      summary: Copy a file from one path to another.
+      parameters:
+      - $ref: '#/components/parameters/AccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CopyFileRequest'
+      responses:
+        '200':
+          description: File copied.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CopyFileResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    CopyFileResult:
+      type: object
+      properties:
+        status:
+          type: string
+          example: Copied
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            timestamp:
+              type: string
+              format: date-time
+    CopyFileRequest:
+      type: object
+      properties:
+        source:
+          type: string
+          description: Source file path.
+        destination:
+          type: string
+          description: Destination file path.
+      required:
+      - source
+      - destination
+    FileDetails:
+      type: object
+      properties:
+        accountId:
+          type: string
+        etag:
+          type: string
+        filePath:
+          type: string
+        fileUrl:
+          type: string
+          format: uri
+        metadata:
+          type: object
+          additionalProperties: true
+        mime:
+          type: string
+        originalFileName:
+          type: string
+        size:
+          type: integer
+          format: int64
+        tags:
+          type: array
+          items:
+            type: string
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      schema:
+        type: string
+        minLength: 7
+        maxLength: 7
+      description: Your 7-character Bytescale account ID (from dashboard settings).
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bytescale API key passed as a Bearer token. Secret keys (secret_*) are required for write and management operations; public keys (public_*) may be used with JWT-based auth.
