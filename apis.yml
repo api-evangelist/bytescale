@@ -6,7 +6,20 @@ description: Bytescale (formerly Upload.io) is a file upload, storage, image / v
   audio processing, and CDN platform for developers. A simple REST API uploads files
   (binary, multipart form data, or from a URL), manages files and folders, and serves
   optimized media through real-time, URL-based transformations on a global CDN.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: true
+  try_now: true
+  public: false
+  label: Freemium (free trial) · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bytescale.png
 tags:
 - File Upload
 - Storage
@@ -17,83 +30,84 @@ created: '2026-06-20'
 modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
-- aid: bytescale:bytescale-file-upload-api
-  name: Bytescale File Upload API
-  tags:
-  - File Upload
-  - Binary
-  - Form Data
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: bytescale:bytescale-files-api
+  name: Bytescale Files API
+  description: The Files API from Bytescale — 3 operation(s) for files.
   humanURL: https://www.bytescale.com/docs/upload-api
   baseURL: https://api.bytescale.com/v2/accounts/{accountId}
-  properties:
-  - url: https://www.bytescale.com/docs/upload-api
-    type: Documentation
-  - url: https://www.bytescale.com/docs/upload-api/BasicUpload
-    type: APIReference
-  - url: openapi/bytescale-openapi.yml
-    type: OpenAPI
-  - url: collections/bytescale.postman_collection.json
-    type: PostmanCollection
-  description: Upload files with a single HTTP request - raw binary, multipart form
-    data (multiple files), or from a remote URL - plus a multipart workflow for very
-    large files. Returns the stored file path and public CDN file URL.
-- aid: bytescale:bytescale-files-management-api
-  name: Bytescale Files Management API
   tags:
   - Files
-  - Folders
-  - Storage
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.bytescale.com/docs/file-api
+  properties:
+  - type: OpenAPI
+    url: openapi/bytescale-files-api-openapi.yml
+  - type: Documentation
+    url: https://www.bytescale.com/docs/upload-api
+  - type: APIReference
+    url: https://www.bytescale.com/docs/upload-api/BasicUpload
+  - type: PostmanCollection
+    url: collections/bytescale.postman_collection.json
+  - type: Documentation
+    url: https://www.bytescale.com/docs/file-api
+  - type: APIReference
+    url: https://www.bytescale.com/docs/file-api/GetFileDetails
+  - type: Documentation
+    url: https://www.bytescale.com/docs/image-processing-api
+  - type: APIReference
+    url: https://www.bytescale.com/docs/image-processing-api
+  - type: Documentation
+    url: https://www.bytescale.com/image-cdn
+- aid: bytescale:bytescale-folders-api
+  name: Bytescale Folders API
+  description: The Folders API from Bytescale — 2 operation(s) for folders.
+  humanURL: https://www.bytescale.com/docs/upload-api
   baseURL: https://api.bytescale.com/v2/accounts/{accountId}
-  properties:
-  - url: https://www.bytescale.com/docs/file-api
-    type: Documentation
-  - url: https://www.bytescale.com/docs/file-api/GetFileDetails
-    type: APIReference
-  - url: openapi/bytescale-openapi.yml
-    type: OpenAPI
-  - url: collections/bytescale.postman_collection.json
-    type: PostmanCollection
-  description: Inspect file details, download original files, delete files, copy files,
-    and list, create, or delete folders for managing stored assets.
-- aid: bytescale:bytescale-image-video-processing-api
-  name: Bytescale Image / Video Processing API
   tags:
-  - Image Processing
-  - Video
-  - Transformations
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.bytescale.com/docs/image-processing-api
-  baseURL: https://upcdn.io/{accountId}
+  - Folders
   properties:
-  - url: https://www.bytescale.com/docs/image-processing-api
-    type: Documentation
-  - url: https://www.bytescale.com/docs/image-processing-api
-    type: APIReference
-  - url: openapi/bytescale-openapi.yml
-    type: OpenAPI
-  description: Real-time, URL-based image, video, and audio processing - resize, crop,
-    convert format, compress, blur, rotate, watermark, add text, and extract video
-    thumbnails - applied via query-string parameters on GET requests and cached at
-    the edge.
-- aid: bytescale:bytescale-cdn-serving-api
-  name: Bytescale CDN / Serving API
+  - type: OpenAPI
+    url: openapi/bytescale-folders-api-openapi.yml
+  - type: Documentation
+    url: https://www.bytescale.com/docs/upload-api
+  - type: APIReference
+    url: https://www.bytescale.com/docs/upload-api/BasicUpload
+  - type: PostmanCollection
+    url: collections/bytescale.postman_collection.json
+  - type: Documentation
+    url: https://www.bytescale.com/docs/file-api
+  - type: APIReference
+    url: https://www.bytescale.com/docs/file-api/GetFileDetails
+  - type: Documentation
+    url: https://www.bytescale.com/docs/image-processing-api
+  - type: APIReference
+    url: https://www.bytescale.com/docs/image-processing-api
+  - type: Documentation
+    url: https://www.bytescale.com/image-cdn
+- aid: bytescale:bytescale-upload-api
+  name: Bytescale Upload API
+  description: The Upload API from Bytescale — 3 operation(s) for upload.
+  humanURL: https://www.bytescale.com/docs/upload-api
+  baseURL: https://api.bytescale.com/v2/accounts/{accountId}
   tags:
-  - CDN
-  - Serving
-  - Delivery
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.bytescale.com/image-cdn
-  baseURL: https://upcdn.io/{accountId}
+  - Upload
   properties:
-  - url: https://www.bytescale.com/image-cdn
-    type: Documentation
-  - url: openapi/bytescale-openapi.yml
-    type: OpenAPI
-  description: Global CDN delivery of raw and transformed files via the upcdn.io edge
-    network, serving uploaded assets and their processed variants over HTTPS.
+  - type: OpenAPI
+    url: openapi/bytescale-upload-api-openapi.yml
+  - type: Documentation
+    url: https://www.bytescale.com/docs/upload-api
+  - type: APIReference
+    url: https://www.bytescale.com/docs/upload-api/BasicUpload
+  - type: PostmanCollection
+    url: collections/bytescale.postman_collection.json
+  - type: Documentation
+    url: https://www.bytescale.com/docs/file-api
+  - type: APIReference
+    url: https://www.bytescale.com/docs/file-api/GetFileDetails
+  - type: Documentation
+    url: https://www.bytescale.com/docs/image-processing-api
+  - type: APIReference
+    url: https://www.bytescale.com/docs/image-processing-api
+  - type: Documentation
+    url: https://www.bytescale.com/image-cdn
 common:
 - type: AgenticAccess
   url: agentic-access/bytescale-agentic-access.yml
