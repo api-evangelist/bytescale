@@ -1,0 +1,535 @@
+openapi: 3.0.1
+info:
+  title: Bytescale API
+  description: >-
+    REST API for the Bytescale (formerly Upload.io) file upload, storage,
+    media processing, and CDN platform. Upload files via raw binary, multipart
+    form data, or from a URL; manage files and folders; and serve optimized
+    media through the upcdn.io edge network. All Upload and File API endpoints
+    are rooted at https://api.bytescale.com/v2/accounts/{accountId} and
+    authenticate with a Bearer API key.
+  termsOfService: https://www.bytescale.com/legal/terms
+  contact:
+    name: Bytescale Support
+    url: https://www.bytescale.com/docs
+  version: '2.0'
+servers:
+  - url: https://api.bytescale.com
+    description: Bytescale REST API (Upload and File APIs)
+security:
+  - bearerAuth: []
+paths:
+  /v2/accounts/{accountId}/uploads/binary:
+    post:
+      operationId: basicUpload
+      tags:
+        - Upload
+      summary: Upload a file with a single HTTP request (raw binary body).
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - name: fileName
+          in: query
+          required: false
+          schema:
+            type: string
+            maxLength: 512
+          description: File name (without "/"). Supports path variables.
+        - name: fileNameFallback
+          in: query
+          required: false
+          schema:
+            type: string
+            maxLength: 512
+          description: Fallback name used if fileName is already taken.
+        - name: fileNameVariablesEnabled
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: true
+        - name: filePath
+          in: query
+          required: false
+          schema:
+            type: string
+            maxLength: 512
+          description: Complete file path including name. Must start with "/".
+        - name: folderPath
+          in: query
+          required: false
+          schema:
+            type: string
+            maxLength: 512
+          description: Directory path excluding file name. Supports path variables.
+        - name: folderPathVariablesEnabled
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: true
+        - name: originalFileName
+          in: query
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 255
+        - name: tag
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Rule-trigger tag for the upload. Repeatable.
+        - name: X-Upload-Metadata
+          in: header
+          required: false
+          schema:
+            type: string
+          description: Arbitrary FileMetadata JSON object to attach to the file.
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: File uploaded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/accounts/{accountId}/uploads/form_data:
+    post:
+      operationId: formDataUpload
+      tags:
+        - Upload
+      summary: Upload one or more files with a single multipart/form-data request.
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - name: fileName
+          in: query
+          required: false
+          schema:
+            type: string
+            maxLength: 512
+        - name: fileNameFallback
+          in: query
+          required: false
+          schema:
+            type: string
+            maxLength: 512
+        - name: folderPath
+          in: query
+          required: false
+          schema:
+            type: string
+            maxLength: 512
+        - name: tag
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: X-Upload-Metadata
+          in: header
+          required: false
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+                format: binary
+      responses:
+        '200':
+          description: Files processed (per-file successes and errors returned).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormDataUploadResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/accounts/{accountId}/uploads/url:
+    post:
+      operationId: uploadFromUrl
+      tags:
+        - Upload
+      summary: Upload a file from a remote URL.
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadFromUrlRequest'
+      responses:
+        '200':
+          description: File uploaded from URL.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/accounts/{accountId}/files/details:
+    get:
+      operationId: getFileDetails
+      tags:
+        - Files
+      summary: Get the details and metadata of a stored file.
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - name: filePath
+          in: query
+          required: true
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 512
+          description: Absolute file path beginning with "/".
+      responses:
+        '200':
+          description: File details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileDetails'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: File not found.
+  /v2/accounts/{accountId}/files:
+    delete:
+      operationId: deleteFile
+      tags:
+        - Files
+      summary: Delete a stored file.
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - name: filePath
+          in: query
+          required: true
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 512
+          description: Absolute file path beginning with "/".
+      responses:
+        '200':
+          description: File deleted (empty body).
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/accounts/{accountId}/files/copy:
+    post:
+      operationId: copyFile
+      tags:
+        - Files
+      summary: Copy a file from one path to another.
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CopyFileRequest'
+      responses:
+        '200':
+          description: File copied.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CopyFileResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/accounts/{accountId}/folders/list:
+    get:
+      operationId: listFolder
+      tags:
+        - Folders
+      summary: List the files and folders within a folder.
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - name: folderPath
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Absolute folder path beginning with "/".
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+        - name: recursive
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: includeFiles
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Folder listing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFolderResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/accounts/{accountId}/folders:
+    put:
+      operationId: putFolder
+      tags:
+        - Folders
+      summary: Create or update a folder (ancestors created automatically).
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutFolderRequest'
+      responses:
+        '200':
+          description: Folder created or updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderDetails'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteFolder
+      tags:
+        - Folders
+      summary: Delete a folder.
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - name: folderPath
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Absolute folder path beginning with "/".
+      responses:
+        '200':
+          description: Folder deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Bytescale API key passed as a Bearer token. Secret keys (secret_*)
+        are required for write and management operations; public keys
+        (public_*) may be used with JWT-based auth.
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      schema:
+        type: string
+        minLength: 7
+        maxLength: 7
+      description: Your 7-character Bytescale account ID (from dashboard settings).
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    UploadResult:
+      type: object
+      properties:
+        accountId:
+          type: string
+        etag:
+          type: string
+        filePath:
+          type: string
+        fileUrl:
+          type: string
+          format: uri
+      required:
+        - accountId
+        - filePath
+        - fileUrl
+    FormDataUploadResult:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            type: object
+            properties:
+              accountId:
+                type: string
+              etag:
+                type: string
+              filePath:
+                type: string
+              fileUrl:
+                type: string
+                format: uri
+              formDataFieldName:
+                type: string
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              formDataFieldName:
+                type: string
+              error:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+    UploadFromUrlRequest:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The source URL of the file to upload.
+      required:
+        - url
+    FileDetails:
+      type: object
+      properties:
+        accountId:
+          type: string
+        etag:
+          type: string
+        filePath:
+          type: string
+        fileUrl:
+          type: string
+          format: uri
+        metadata:
+          type: object
+          additionalProperties: true
+        mime:
+          type: string
+        originalFileName:
+          type: string
+        size:
+          type: integer
+          format: int64
+        tags:
+          type: array
+          items:
+            type: string
+    CopyFileRequest:
+      type: object
+      properties:
+        source:
+          type: string
+          description: Source file path.
+        destination:
+          type: string
+          description: Destination file path.
+      required:
+        - source
+        - destination
+    CopyFileResult:
+      type: object
+      properties:
+        status:
+          type: string
+          example: Copied
+    ListFolderResult:
+      type: object
+      properties:
+        cursor:
+          type: string
+        isPaginationComplete:
+          type: boolean
+        folder:
+          type: object
+          additionalProperties: true
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                  - File
+                  - Folder
+              filePath:
+                type: string
+              fileUrl:
+                type: string
+                format: uri
+              size:
+                type: integer
+                format: int64
+    PutFolderRequest:
+      type: object
+      properties:
+        folderPath:
+          type: string
+          description: The path of the folder to create or update.
+      required:
+        - folderPath
+    FolderDetails:
+      type: object
+      properties:
+        folderPath:
+          type: string
+        settings:
+          type: object
+          additionalProperties: true
+        settingsInherited:
+          type: object
+          additionalProperties: true
+        type:
+          type: string
+          example: Folder
+        virtual:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            timestamp:
+              type: string
+              format: date-time

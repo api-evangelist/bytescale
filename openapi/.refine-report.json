@@ -1,0 +1,18 @@
+{
+  "provider": "bytescale",
+  "sources": [
+    "bytescale-files-api-openapi.yml",
+    "bytescale-folders-api-openapi.yml",
+    "bytescale-upload-api-openapi.yml"
+  ],
+  "outputs": [
+    "bytescale-files-api-openapi.yml",
+    "bytescale-folders-api-openapi.yml",
+    "bytescale-upload-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
