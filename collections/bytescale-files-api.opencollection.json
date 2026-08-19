@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bytescale Files API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the details and metadata of a stored file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bytescale.com/v2/accounts/:accountId/files/details",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Your 7-character Bytescale account ID (from dashboard settings)."
+              },
+              {
+                "name": "filePath",
+                "value": "",
+                "type": "query",
+                "description": "Absolute file path beginning with \"/\"."
+              }
+            ]
+          },
+          "docs": "Get the details and metadata of a stored file."
+        },
+        {
+          "info": {
+            "name": "Delete a stored file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.bytescale.com/v2/accounts/:accountId/files",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Your 7-character Bytescale account ID (from dashboard settings)."
+              },
+              {
+                "name": "filePath",
+                "value": "",
+                "type": "query",
+                "description": "Absolute file path beginning with \"/\"."
+              }
+            ]
+          },
+          "docs": "Delete a stored file."
+        },
+        {
+          "info": {
+            "name": "Copy a file from one path to another.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bytescale.com/v2/accounts/:accountId/files/copy",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Your 7-character Bytescale account ID (from dashboard settings)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Copy a file from one path to another."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

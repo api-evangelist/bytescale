@@ -1,0 +1,608 @@
+{
+  "item": [
+    {
+      "id": "7ca47a2f-cc73-471b-acf0-a1388e96a45e",
+      "name": "Folders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "66a26138-00e2-4679-b5ab-6684e6a53174",
+          "name": "List the files and folders within a folder.",
+          "request": {
+            "name": "List the files and folders within a folder.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                ":accountId",
+                "folders",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "folderPath",
+                  "value": "<string>",
+                  "description": "(Required) Absolute folder path beginning with \"/\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "recursive",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeFiles",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a2db6a8-3a2a-43da-9cef-d01925c465f8",
+              "name": "Folder listing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts",
+                    ":accountId",
+                    "folders",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "folderPath",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "recursive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeFiles",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cursor\": \"string\",\n  \"isPaginationComplete\": true,\n  \"folder\": {\n    \"key_0\": 1922\n  },\n  \"items\": [\n    {\n      \"type\": \"File\",\n      \"filePath\": \"string\",\n      \"fileUrl\": \"http://ncmwRCFQpujjUlmcE.nwusnuyYg-Ta-XTUH-ZrAKMPWJi6E8AF.8Xc1sbjfzTrKOB93u\",\n      \"size\": 567\n    },\n    {\n      \"type\": \"File\",\n      \"filePath\": \"string\",\n      \"fileUrl\": \"http://YKPtSNwqp.tgbpLwV2Qwlyseqywr.AYTuKpX4yzrS5D3KK8lBTfTEAu1ih0\",\n      \"size\": 1408\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d2cf7d5-de7a-41e3-bd69-4e612b146dfd",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts",
+                    ":accountId",
+                    "folders",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "folderPath",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "recursive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeFiles",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"timestamp\": \"1958-11-25T08:57:49.996Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "becd2726-2e80-4bfc-8a53-affef2d45b69",
+          "name": "Create or update a folder (ancestors created automatically).",
+          "request": {
+            "name": "Create or update a folder (ancestors created automatically).",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                ":accountId",
+                "folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"folderPath\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9665244f-e81d-4c76-a5a1-16a8a859e95a",
+              "name": "Folder created or updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts",
+                    ":accountId",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"folderPath\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"folderPath\": \"string\",\n  \"settings\": {\n    \"key_0\": \"string\",\n    \"key_1\": 434,\n    \"key_2\": 5537,\n    \"key_3\": 6272.232768390518,\n    \"key_4\": true\n  },\n  \"settingsInherited\": {\n    \"key_0\": 265.92370795607724,\n    \"key_1\": 3.435096575513663,\n    \"key_2\": 7515\n  },\n  \"type\": \"Folder\",\n  \"virtual\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8da2e35d-4a5b-4cf4-b8a2-3284fa3fa646",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts",
+                    ":accountId",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"folderPath\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"timestamp\": \"1958-11-25T08:57:49.996Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0bc44469-1bf8-4fbb-8b09-edd5cafa9414",
+          "name": "Delete a folder.",
+          "request": {
+            "name": "Delete a folder.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                ":accountId",
+                "folders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "folderPath",
+                  "value": "<string>",
+                  "description": "(Required) Absolute folder path beginning with \"/\"."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3480c658-9fb1-453d-bc88-f16801b2ed0d",
+              "name": "Folder deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts",
+                    ":accountId",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "folderPath",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "418c9206-88ea-44da-ab52-9e929e2895ab",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts",
+                    ":accountId",
+                    "folders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "folderPath",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"timestamp\": \"1958-11-25T08:57:49.996Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bytescale.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2fadf589-86bb-4530-a4ca-9a4b70739d56",
+    "name": "Bytescale Files Folders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Bytescale (formerly Upload.io) file upload, storage, media processing, and CDN platform. Upload files via raw binary, multipart form data, or from a URL; manage files and folders; and serve optimized media through the upcdn.io edge network. All Upload and File API endpoints are rooted at https://api.bytescale.com/v2/accounts/{accountId} and authenticate with a Bearer API key.\n\nContact Support:\n Name: Bytescale Support",
+      "type": "text/plain"
+    }
+  }
+}

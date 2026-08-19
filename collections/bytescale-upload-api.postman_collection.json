@@ -1,0 +1,817 @@
+{
+  "item": [
+    {
+      "id": "a4e2f6f0-3ca3-45d1-a085-076182fefa5f",
+      "name": "Upload",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "caccaf83-fbff-4c1c-b12b-7407f6919f33",
+          "name": "Upload a file with a single HTTP request (raw binary body).",
+          "request": {
+            "name": "Upload a file with a single HTTP request (raw binary body).",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                ":accountId",
+                "uploads",
+                "binary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fileName",
+                  "value": "<string>",
+                  "description": "File name (without \"/\"). Supports path variables."
+                },
+                {
+                  "disabled": false,
+                  "key": "fileNameFallback",
+                  "value": "<string>",
+                  "description": "Fallback name used if fileName is already taken."
+                },
+                {
+                  "disabled": false,
+                  "key": "fileNameVariablesEnabled",
+                  "value": "true"
+                },
+                {
+                  "disabled": false,
+                  "key": "filePath",
+                  "value": "<string>",
+                  "description": "Complete file path including name. Must start with \"/\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "folderPath",
+                  "value": "<string>",
+                  "description": "Directory path excluding file name. Supports path variables."
+                },
+                {
+                  "disabled": false,
+                  "key": "folderPathVariablesEnabled",
+                  "value": "true"
+                },
+                {
+                  "disabled": false,
+                  "key": "originalFileName",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>",
+                  "description": "Rule-trigger tag for the upload. Repeatable."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Arbitrary FileMetadata JSON object to attach to the file.",
+                "key": "X-Upload-Metadata",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "file"
+            }
+          },
+          "response": [
+            {
+              "id": "20db5900-cf14-45a7-9f4d-59136ec9f32e",
+              "name": "File uploaded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts",
+                    ":accountId",
+                    "uploads",
+                    "binary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fileName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fileNameFallback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fileNameVariablesEnabled",
+                      "value": "true"
+                    },
+                    {
+                      "key": "filePath",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "folderPath",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "folderPathVariablesEnabled",
+                      "value": "true"
+                    },
+                    {
+                      "key": "originalFileName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Arbitrary FileMetadata JSON object to attach to the file.",
+                    "key": "X-Upload-Metadata",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountId\": \"string\",\n  \"filePath\": \"string\",\n  \"fileUrl\": \"http://KXcPPgqoWCQGJdtQfVQKsezlSP.ejrweYAHGG23-lqZ0UPTTEs7xqlmIff6vVwnuXA\",\n  \"etag\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9dc660e7-e37a-46b3-8eec-448800463551",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts",
+                    ":accountId",
+                    "uploads",
+                    "binary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fileName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fileNameFallback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fileNameVariablesEnabled",
+                      "value": "true"
+                    },
+                    {
+                      "key": "filePath",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "folderPath",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "folderPathVariablesEnabled",
+                      "value": "true"
+                    },
+                    {
+                      "key": "originalFileName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Arbitrary FileMetadata JSON object to attach to the file.",
+                    "key": "X-Upload-Metadata",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"timestamp\": \"2012-06-12T16:55:34.658Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bbdd2070-1684-4c0c-ab12-4182da4af2df",
+          "name": "Upload one or more files with a single multipart/form-data request.",
+          "request": {
+            "name": "Upload one or more files with a single multipart/form-data request.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                ":accountId",
+                "uploads",
+                "form_data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fileName",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "fileNameFallback",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "folderPath",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-Upload-Metadata",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "key_0",
+                  "value": "<binary>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "key_1",
+                  "value": "<binary>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "key_2",
+                  "value": "<binary>",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cb4b38a8-62a4-4f95-a8d6-be2b088d3a24",
+              "name": "Files processed (per-file successes and errors returned).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts",
+                    ":accountId",
+                    "uploads",
+                    "form_data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fileName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fileNameFallback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "folderPath",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Upload-Metadata",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "key_0",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "key_1",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"files\": [\n    {\n      \"accountId\": \"string\",\n      \"etag\": \"string\",\n      \"filePath\": \"string\",\n      \"fileUrl\": \"https://uolRiFlqtZAnrmXpQ.ohP\",\n      \"formDataFieldName\": \"string\"\n    },\n    {\n      \"accountId\": \"string\",\n      \"etag\": \"string\",\n      \"filePath\": \"string\",\n      \"fileUrl\": \"http://IJSKbbnbtDJYdbMKXUYudAMUgL.rgnaP21UTcjvSsEv.92NoqCrq3ZIXtDsF1TX-GqRtOWsjkjN\",\n      \"formDataFieldName\": \"string\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"formDataFieldName\": \"string\",\n      \"error\": {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"timestamp\": \"1952-04-06T02:01:52.835Z\"\n      }\n    },\n    {\n      \"formDataFieldName\": \"string\",\n      \"error\": {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"timestamp\": \"2012-04-12T04:45:38.057Z\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2740ba4-20a6-4dae-a3e4-e27eb37217c0",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts",
+                    ":accountId",
+                    "uploads",
+                    "form_data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fileName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fileNameFallback",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "folderPath",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Upload-Metadata",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "key_0",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "key_1",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"timestamp\": \"2012-06-12T16:55:34.658Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5436f09f-bfcf-4003-80cf-3d409a5e71d7",
+          "name": "Upload a file from a remote URL.",
+          "request": {
+            "name": "Upload a file from a remote URL.",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "accounts",
+                ":accountId",
+                "uploads",
+                "url"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "efa1eee2-f62b-4bf0-a200-41a9ba2c4bc2",
+              "name": "File uploaded from URL.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts",
+                    ":accountId",
+                    "uploads",
+                    "url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountId\": \"string\",\n  \"filePath\": \"string\",\n  \"fileUrl\": \"http://KXcPPgqoWCQGJdtQfVQKsezlSP.ejrweYAHGG23-lqZ0UPTTEs7xqlmIff6vVwnuXA\",\n  \"etag\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e32d12da-27d5-40be-aaba-873b99f02b90",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "accounts",
+                    ":accountId",
+                    "uploads",
+                    "url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Your 7-character Bytescale account ID (from dashboard settings)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"timestamp\": \"2012-06-12T16:55:34.658Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bytescale.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "64b666a2-4af2-40ea-a369-476809645fce",
+    "name": "Bytescale Files Upload API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the Bytescale (formerly Upload.io) file upload, storage, media processing, and CDN platform. Upload files via raw binary, multipart form data, or from a URL; manage files and folders; and serve optimized media through the upcdn.io edge network. All Upload and File API endpoints are rooted at https://api.bytescale.com/v2/accounts/{accountId} and authenticate with a Bearer API key.\n\nContact Support:\n Name: Bytescale Support",
+      "type": "text/plain"
+    }
+  }
+}

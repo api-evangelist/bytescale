@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bytescale Files Upload API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Upload",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a file with a single HTTP request (raw binary body).",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bytescale.com/v2/accounts/:accountId/uploads/binary",
+            "headers": [
+              {
+                "name": "X-Upload-Metadata",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Your 7-character Bytescale account ID (from dashboard settings)."
+              },
+              {
+                "name": "fileName",
+                "value": "",
+                "type": "query",
+                "description": "File name (without \"/\"). Supports path variables."
+              },
+              {
+                "name": "fileNameFallback",
+                "value": "",
+                "type": "query",
+                "description": "Fallback name used if fileName is already taken."
+              },
+              {
+                "name": "fileNameVariablesEnabled",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filePath",
+                "value": "",
+                "type": "query",
+                "description": "Complete file path including name. Must start with \"/\"."
+              },
+              {
+                "name": "folderPath",
+                "value": "",
+                "type": "query",
+                "description": "Directory path excluding file name. Supports path variables."
+              },
+              {
+                "name": "folderPathVariablesEnabled",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "originalFileName",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Rule-trigger tag for the upload. Repeatable."
+              }
+            ]
+          },
+          "docs": "Upload a file with a single HTTP request (raw binary body)."
+        },
+        {
+          "info": {
+            "name": "Upload one or more files with a single multipart/form-data request.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bytescale.com/v2/accounts/:accountId/uploads/form_data",
+            "headers": [
+              {
+                "name": "X-Upload-Metadata",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Your 7-character Bytescale account ID (from dashboard settings)."
+              },
+              {
+                "name": "fileName",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fileNameFallback",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "folderPath",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Upload one or more files with a single multipart/form-data request."
+        },
+        {
+          "info": {
+            "name": "Upload a file from a remote URL.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bytescale.com/v2/accounts/:accountId/uploads/url",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Your 7-character Bytescale account ID (from dashboard settings)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload a file from a remote URL."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
