@@ -36,6 +36,8 @@ apis:
   humanURL: https://www.bytescale.com/docs/upload-api
   baseURL: https://api.bytescale.com/v2/accounts/{accountId}
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
