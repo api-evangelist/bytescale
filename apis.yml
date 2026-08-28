@@ -6,6 +6,18 @@ description: Bytescale (formerly Upload.io) is a file upload, storage, image / v
   audio processing, and CDN platform for developers. A simple REST API uploads files
   (binary, multipart form data, or from a URL), manages files and folders, and serves
   optimized media through real-time, URL-based transformations on a global CDN.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
