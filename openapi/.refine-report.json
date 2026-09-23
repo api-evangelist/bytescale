@@ -1,9 +1,7 @@
 {
   "provider": "bytescale",
   "sources": [
-    "bytescale-files-api-openapi.yml",
-    "bytescale-folders-api-openapi.yml",
-    "bytescale-upload-api-openapi.yml"
+    "_original/bytescale-openapi.yml"
   ],
   "outputs": [
     "bytescale-files-api-openapi.yml",
@@ -13,6 +11,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "bytescale-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "bytescale-openapi.yml: declared missing tag: Files",
+    "bytescale-openapi.yml: declared missing tag: Folders",
+    "bytescale-openapi.yml: declared missing tag: Upload",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "bytescale-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bytescale-folders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bytescale-upload-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

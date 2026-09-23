@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Bytescale Files Folders API
+  title: Bytescale Folders API
   description: REST API for the Bytescale (formerly Upload.io) file upload, storage, media processing, and CDN platform. Upload files via raw binary, multipart form data, or from a URL; manage files and folders; and serve optimized media through the upcdn.io edge network. All Upload and File API endpoints are rooted at https://api.bytescale.com/v2/accounts/{accountId} and authenticate with a Bearer API key.
   termsOfService: https://www.bytescale.com/legal/terms
   contact:
@@ -20,7 +20,7 @@ paths:
       operationId: listFolder
       tags:
       - Folders
-      summary: List the files and folders within a folder.
+      summary: List the files and folders within a folder
       parameters:
       - $ref: '#/components/parameters/AccountId'
       - name: folderPath
@@ -65,7 +65,7 @@ paths:
       operationId: putFolder
       tags:
       - Folders
-      summary: Create or update a folder (ancestors created automatically).
+      summary: Create or update a folder (ancestors created automatically)
       parameters:
       - $ref: '#/components/parameters/AccountId'
       requestBody:
@@ -87,7 +87,7 @@ paths:
       operationId: deleteFolder
       tags:
       - Folders
-      summary: Delete a folder.
+      summary: Delete a folder
       parameters:
       - $ref: '#/components/parameters/AccountId'
       - name: folderPath
@@ -103,6 +103,14 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    PutFolderRequest:
+      type: object
+      properties:
+        folderPath:
+          type: string
+          description: The path of the folder to create or update.
+      required:
+      - folderPath
     FolderDetails:
       type: object
       properties:
@@ -119,14 +127,19 @@ components:
           example: Folder
         virtual:
           type: boolean
-    PutFolderRequest:
+    Error:
       type: object
       properties:
-        folderPath:
-          type: string
-          description: The path of the folder to create or update.
-      required:
-      - folderPath
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            timestamp:
+              type: string
+              format: date-time
     ListFolderResult:
       type: object
       properties:
@@ -155,19 +168,6 @@ components:
               size:
                 type: integer
                 format: int64
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            timestamp:
-              type: string
-              format: date-time
   responses:
     Unauthorized:
       description: Missing or invalid API key.

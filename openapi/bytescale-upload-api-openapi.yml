@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Bytescale Files Upload API
+  title: Bytescale Upload API
   description: REST API for the Bytescale (formerly Upload.io) file upload, storage, media processing, and CDN platform. Upload files via raw binary, multipart form data, or from a URL; manage files and folders; and serve optimized media through the upcdn.io edge network. All Upload and File API endpoints are rooted at https://api.bytescale.com/v2/accounts/{accountId} and authenticate with a Bearer API key.
   termsOfService: https://www.bytescale.com/legal/terms
   contact:
@@ -20,7 +20,7 @@ paths:
       operationId: basicUpload
       tags:
       - Upload
-      summary: Upload a file with a single HTTP request (raw binary body).
+      summary: Upload a file with a single HTTP request (raw binary body)
       parameters:
       - $ref: '#/components/parameters/AccountId'
       - name: fileName
@@ -103,7 +103,7 @@ paths:
       operationId: formDataUpload
       tags:
       - Upload
-      summary: Upload one or more files with a single multipart/form-data request.
+      summary: Upload one or more files with a single multipart/form-data request
       parameters:
       - $ref: '#/components/parameters/AccountId'
       - name: fileName
@@ -157,7 +157,7 @@ paths:
       operationId: uploadFromUrl
       tags:
       - Upload
-      summary: Upload a file from a remote URL.
+      summary: Upload a file from a remote URL
       parameters:
       - $ref: '#/components/parameters/AccountId'
       requestBody:
@@ -177,15 +177,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    UploadFromUrlRequest:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-          description: The source URL of the file to upload.
-      required:
-      - url
     UploadResult:
       type: object
       properties:
@@ -251,6 +242,22 @@ components:
             timestamp:
               type: string
               format: date-time
+    UploadFromUrlRequest:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The source URL of the file to upload.
+      required:
+      - url
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     AccountId:
       name: accountId
@@ -261,13 +268,6 @@ components:
         minLength: 7
         maxLength: 7
       description: Your 7-character Bytescale account ID (from dashboard settings).
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

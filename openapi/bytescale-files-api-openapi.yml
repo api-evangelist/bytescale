@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Bytescale Files API
   description: REST API for the Bytescale (formerly Upload.io) file upload, storage, media processing, and CDN platform. Upload files via raw binary, multipart form data, or from a URL; manage files and folders; and serve optimized media through the upcdn.io edge network. All Upload and File API endpoints are rooted at https://api.bytescale.com/v2/accounts/{accountId} and authenticate with a Bearer API key.
@@ -20,7 +20,7 @@ paths:
       operationId: getFileDetails
       tags:
       - Files
-      summary: Get the details and metadata of a stored file.
+      summary: Get the details and metadata of a stored file
       parameters:
       - $ref: '#/components/parameters/AccountId'
       - name: filePath
@@ -47,7 +47,7 @@ paths:
       operationId: deleteFile
       tags:
       - Files
-      summary: Delete a stored file.
+      summary: Delete a stored file
       parameters:
       - $ref: '#/components/parameters/AccountId'
       - name: filePath
@@ -68,7 +68,7 @@ paths:
       operationId: copyFile
       tags:
       - Files
-      summary: Copy a file from one path to another.
+      summary: Copy a file from one path to another
       parameters:
       - $ref: '#/components/parameters/AccountId'
       requestBody:
@@ -94,6 +94,18 @@ components:
         status:
           type: string
           example: Copied
+    CopyFileRequest:
+      type: object
+      properties:
+        source:
+          type: string
+          description: Source file path.
+        destination:
+          type: string
+          description: Destination file path.
+      required:
+      - source
+      - destination
     Error:
       type: object
       properties:
@@ -107,18 +119,6 @@ components:
             timestamp:
               type: string
               format: date-time
-    CopyFileRequest:
-      type: object
-      properties:
-        source:
-          type: string
-          description: Source file path.
-        destination:
-          type: string
-          description: Destination file path.
-      required:
-      - source
-      - destination
     FileDetails:
       type: object
       properties:
@@ -145,6 +145,13 @@ components:
           type: array
           items:
             type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     AccountId:
       name: accountId
@@ -155,13 +162,6 @@ components:
         minLength: 7
         maxLength: 7
       description: Your 7-character Bytescale account ID (from dashboard settings).
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http
