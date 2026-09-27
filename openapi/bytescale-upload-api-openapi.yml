@@ -176,6 +176,23 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      schema:
+        type: string
+        minLength: 7
+        maxLength: 7
+      description: Your 7-character Bytescale account ID (from dashboard settings).
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     UploadResult:
       type: object
@@ -251,23 +268,6 @@ components:
           description: The source URL of the file to upload.
       required:
       - url
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    AccountId:
-      name: accountId
-      in: path
-      required: true
-      schema:
-        type: string
-        minLength: 7
-        maxLength: 7
-      description: Your 7-character Bytescale account ID (from dashboard settings).
   securitySchemes:
     bearerAuth:
       type: http

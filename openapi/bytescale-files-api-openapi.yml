@@ -88,37 +88,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    CopyFileResult:
-      type: object
-      properties:
-        status:
-          type: string
-          example: Copied
-    CopyFileRequest:
-      type: object
-      properties:
-        source:
-          type: string
-          description: Source file path.
-        destination:
-          type: string
-          description: Destination file path.
-      required:
-      - source
-      - destination
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            timestamp:
-              type: string
-              format: date-time
     FileDetails:
       type: object
       properties:
@@ -145,13 +114,37 @@ components:
           type: array
           items:
             type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            timestamp:
+              type: string
+              format: date-time
+    CopyFileRequest:
+      type: object
+      properties:
+        source:
+          type: string
+          description: Source file path.
+        destination:
+          type: string
+          description: Destination file path.
+      required:
+      - source
+      - destination
+    CopyFileResult:
+      type: object
+      properties:
+        status:
+          type: string
+          example: Copied
   parameters:
     AccountId:
       name: accountId
@@ -162,6 +155,13 @@ components:
         minLength: 7
         maxLength: 7
       description: Your 7-character Bytescale account ID (from dashboard settings).
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

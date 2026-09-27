@@ -102,15 +102,52 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      schema:
+        type: string
+        minLength: 7
+        maxLength: 7
+      description: Your 7-character Bytescale account ID (from dashboard settings).
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    PutFolderRequest:
+    ListFolderResult:
       type: object
       properties:
-        folderPath:
+        cursor:
           type: string
-          description: The path of the folder to create or update.
-      required:
-      - folderPath
+        isPaginationComplete:
+          type: boolean
+        folder:
+          type: object
+          additionalProperties: true
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - File
+                - Folder
+              filePath:
+                type: string
+              fileUrl:
+                type: string
+                format: uri
+              size:
+                type: integer
+                format: int64
     FolderDetails:
       type: object
       properties:
@@ -140,51 +177,14 @@ components:
             timestamp:
               type: string
               format: date-time
-    ListFolderResult:
+    PutFolderRequest:
       type: object
       properties:
-        cursor:
+        folderPath:
           type: string
-        isPaginationComplete:
-          type: boolean
-        folder:
-          type: object
-          additionalProperties: true
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                enum:
-                - File
-                - Folder
-              filePath:
-                type: string
-              fileUrl:
-                type: string
-                format: uri
-              size:
-                type: integer
-                format: int64
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    AccountId:
-      name: accountId
-      in: path
-      required: true
-      schema:
-        type: string
-        minLength: 7
-        maxLength: 7
-      description: Your 7-character Bytescale account ID (from dashboard settings).
+          description: The path of the folder to create or update.
+      required:
+      - folderPath
   securitySchemes:
     bearerAuth:
       type: http
