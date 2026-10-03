@@ -186,30 +186,7 @@ components:
         minLength: 7
         maxLength: 7
       description: Your 7-character Bytescale account ID (from dashboard settings).
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    UploadResult:
-      type: object
-      properties:
-        accountId:
-          type: string
-        etag:
-          type: string
-        filePath:
-          type: string
-        fileUrl:
-          type: string
-          format: uri
-      required:
-      - accountId
-      - filePath
-      - fileUrl
     FormDataUploadResult:
       type: object
       properties:
@@ -246,6 +223,31 @@ components:
                   timestamp:
                     type: string
                     format: date-time
+    UploadResult:
+      type: object
+      properties:
+        accountId:
+          type: string
+        etag:
+          type: string
+        filePath:
+          type: string
+        fileUrl:
+          type: string
+          format: uri
+      required:
+      - accountId
+      - filePath
+      - fileUrl
+    UploadFromUrlRequest:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The source URL of the file to upload.
+      required:
+      - url
     Error:
       type: object
       properties:
@@ -259,15 +261,13 @@ components:
             timestamp:
               type: string
               format: date-time
-    UploadFromUrlRequest:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-          description: The source URL of the file to upload.
-      required:
-      - url
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

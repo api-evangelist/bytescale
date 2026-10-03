@@ -112,14 +112,31 @@ components:
         minLength: 7
         maxLength: 7
       description: Your 7-character Bytescale account ID (from dashboard settings).
-  responses:
-    Unauthorized:
-      description: Missing or invalid API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    PutFolderRequest:
+      type: object
+      properties:
+        folderPath:
+          type: string
+          description: The path of the folder to create or update.
+      required:
+      - folderPath
+    FolderDetails:
+      type: object
+      properties:
+        folderPath:
+          type: string
+        settings:
+          type: object
+          additionalProperties: true
+        settingsInherited:
+          type: object
+          additionalProperties: true
+        type:
+          type: string
+          example: Folder
+        virtual:
+          type: boolean
     ListFolderResult:
       type: object
       properties:
@@ -148,22 +165,6 @@ components:
               size:
                 type: integer
                 format: int64
-    FolderDetails:
-      type: object
-      properties:
-        folderPath:
-          type: string
-        settings:
-          type: object
-          additionalProperties: true
-        settingsInherited:
-          type: object
-          additionalProperties: true
-        type:
-          type: string
-          example: Folder
-        virtual:
-          type: boolean
     Error:
       type: object
       properties:
@@ -177,14 +178,13 @@ components:
             timestamp:
               type: string
               format: date-time
-    PutFolderRequest:
-      type: object
-      properties:
-        folderPath:
-          type: string
-          description: The path of the folder to create or update.
-      required:
-      - folderPath
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

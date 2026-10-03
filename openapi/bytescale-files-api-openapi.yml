@@ -87,6 +87,16 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      schema:
+        type: string
+        minLength: 7
+        maxLength: 7
+      description: Your 7-character Bytescale account ID (from dashboard settings).
   schemas:
     FileDetails:
       type: object
@@ -114,19 +124,6 @@ components:
           type: array
           items:
             type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            timestamp:
-              type: string
-              format: date-time
     CopyFileRequest:
       type: object
       properties:
@@ -145,16 +142,19 @@ components:
         status:
           type: string
           example: Copied
-  parameters:
-    AccountId:
-      name: accountId
-      in: path
-      required: true
-      schema:
-        type: string
-        minLength: 7
-        maxLength: 7
-      description: Your 7-character Bytescale account ID (from dashboard settings).
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            timestamp:
+              type: string
+              format: date-time
   responses:
     Unauthorized:
       description: Missing or invalid API key.
