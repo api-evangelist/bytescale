@@ -177,6 +177,22 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    UploadResult:
+      type: object
+      properties:
+        accountId:
+          type: string
+        etag:
+          type: string
+        filePath:
+          type: string
+        fileUrl:
+          type: string
+          format: uri
+      required:
+      - accountId
+      - filePath
+      - fileUrl
     Error:
       type: object
       properties:
@@ -199,22 +215,6 @@ components:
           description: The source URL of the file to upload.
       required:
       - url
-    UploadResult:
-      type: object
-      properties:
-        accountId:
-          type: string
-        etag:
-          type: string
-        filePath:
-          type: string
-        fileUrl:
-          type: string
-          format: uri
-      required:
-      - accountId
-      - filePath
-      - fileUrl
     FormDataUploadResult:
       type: object
       properties:
