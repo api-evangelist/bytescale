@@ -1,4 +1,4 @@
-# Bytescale (bytescale)
+# Bytescale
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,113 +66,120 @@
 
 Bytescale (formerly Upload.io) is a file upload, storage, image / video / audio processing, and CDN platform for developers. A simple REST API uploads files (binary, multipart form data, or from a URL), manages files and folders, and serves optimized media through real-time, URL-based transformations on a global CDN.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/bytescale/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/bytescale/refs/heads/main/apis.yml)
+**Areas:** File Upload · Storage · Image Processing · CDN · Media
 
-## Tags
+## Bytescale on APIs.io
 
-- File Upload
-- Storage
-- Image Processing
-- CDN
-- Media
+Everything profiled for Bytescale is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bytescale/](https://apis.io/providers/bytescale/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (3)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [Bytescale Files API](https://apis.io/apis/bytescale/bytescale-files-api/) — The Files API from Bytescale — 3 operation(s) for files.
+- [Bytescale Folders API](https://apis.io/apis/bytescale/bytescale-folders-api/) — The Folders API from Bytescale — 2 operation(s) for folders.
+- [Bytescale Upload API](https://apis.io/apis/bytescale/bytescale-upload-api/) — The Upload API from Bytescale — 3 operation(s) for upload.
 
-## APIs
+### Published properties
 
-### Bytescale File Upload API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Upload files with a single HTTP request - raw binary, multipart form data (multiple files), or from a remote URL - plus a multipart workflow for very large files. Returns the stored file path and public CDN file URL.
+#### Agentic access (1)
 
-- **Human URL:** [https://www.bytescale.com/docs/upload-api](https://www.bytescale.com/docs/upload-api)
-- **Base URL:** `https://api.bytescale.com/v2/accounts/{accountId}`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Bytescale Agentic Access](https://apis.io/agentic-access/bytescale/bytescale-agentic-access/)
 
-- File Upload
-- Binary
-- Form Data
+#### Collections (4)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://www.bytescale.com/docs/upload-api)
-- [API Reference](https://www.bytescale.com/docs/upload-api/BasicUpload)
-- [OpenAPI](openapi/bytescale-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bytescale.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bytescale.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Bytescale API](https://apis.io/collections/bytescale/open-bytescale/)
+- [Bytescale Files API](https://apis.io/collections/bytescale/open-bytescale-files-api/)
+- [Bytescale Files Folders API](https://apis.io/collections/bytescale/open-bytescale-folders-api/)
+- [Bytescale Files Upload API](https://apis.io/collections/bytescale/open-bytescale-upload-api/)
 
-### Bytescale Files Management API
+#### Security (2)
 
-Inspect file details, download original files, delete files, copy files, and list, create, or delete folders for managing stored assets.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://www.bytescale.com/docs/file-api](https://www.bytescale.com/docs/file-api)
-- **Base URL:** `https://api.bytescale.com/v2/accounts/{accountId}`
+- [Bytescale Authentication](https://apis.io/security/bytescale/bytescale-authentication/)
+- [Bytescale Domain Security](https://apis.io/security/bytescale/bytescale-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Files
-- Folders
-- Storage
+Published plans, tiers and prices.
 
-#### Properties
+- [Bytescale Plans Pricing](https://apis.io/plans/bytescale/bytescale-plans-pricing/)
 
-- [Documentation](https://www.bytescale.com/docs/file-api)
-- [API Reference](https://www.bytescale.com/docs/file-api/GetFileDetails)
-- [OpenAPI](openapi/bytescale-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bytescale.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bytescale.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Bytescale Image / Video Processing API
+Published request limits.
 
-Real-time, URL-based image, video, and audio processing - resize, crop, convert format, compress, blur, rotate, watermark, add text, and extract video thumbnails - applied via query-string parameters on GET requests and cached at the edge.
+- [Bytescale Rate Limits](https://apis.io/rate-limits/bytescale/bytescale-rate-limits/)
 
-- **Human URL:** [https://www.bytescale.com/docs/image-processing-api](https://www.bytescale.com/docs/image-processing-api)
-- **Base URL:** `https://upcdn.io/{accountId}`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Image Processing
-- Video
-- Transformations
+- [Bytescale Finops](https://apis.io/finops/bytescale/bytescale-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://www.bytescale.com/docs/image-processing-api)
-- [API Reference](https://www.bytescale.com/docs/image-processing-api)
-- [OpenAPI](openapi/bytescale-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Bytescale CDN / Serving API
-
-Global CDN delivery of raw and transformed files via the upcdn.io edge network, serving uploaded assets and their processed variants over HTTPS.
-
-- **Human URL:** [https://www.bytescale.com/image-cdn](https://www.bytescale.com/image-cdn)
-- **Base URL:** `https://upcdn.io/{accountId}`
-
-#### Tags
-
-- CDN
-- Serving
-- Delivery
-
-#### Properties
-
-- [Documentation](https://www.bytescale.com/image-cdn)
-- [OpenAPI](openapi/bytescale-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/bytescale)
-- [LinkedIn](https://www.linkedin.com/company/bytescale)
 - [Website](https://www.bytescale.com)
 - [Documentation](https://www.bytescale.com/docs)
-- [Plans](plans/bytescale-plans-pricing.yml)
-- [Rate Limits](rate-limits/bytescale-rate-limits.yml)
-- [Fin Ops](finops/bytescale-finops.yml)
+- [Blog](https://blog.bytescale.com/rss/)
+- [GitHub](https://github.com/bytescale)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 28.6** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 46.5 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bytescale/](https://apis.io/providers/bytescale/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Bytescale: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bytescale/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
